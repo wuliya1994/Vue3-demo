@@ -36,12 +36,20 @@
 </template>
 
 <script>
-  import { reactive, toRefs, computed } from 'vue'
+  import { toRefs, computed } from 'vue'
   import useScroll from '../composition/scroll'
+  import useLocal from '../composition/local'
   export default {
     name: 'TodoMvcDemo',
     setup () {
-      const state = reactive({
+      // const state = reactive({
+      //   newTodo: '',
+      //   todos: [
+      //     {id: 1, title: '吃饭', completed: false},
+      //     {id: 2, title: '睡觉', completed: false}
+      //   ]
+      // })
+      const state = useLocal('todo', {
         newTodo: '',
         todos: [
           {id: 1, title: '吃饭', completed: false},
