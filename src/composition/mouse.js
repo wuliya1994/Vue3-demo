@@ -1,5 +1,5 @@
 import { ref, onMounted, onUnmounted } from 'vue'
-export default function scroll() {
+export default function mouse() {
   const x = ref(10)
   const y = ref(10)
   const mouseMove = (e) => {

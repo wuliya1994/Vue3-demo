@@ -36,8 +36,8 @@
 </template>
 
 <script>
-  import { reactive, toRefs, computed, onMounted, onUnmounted } from 'vue'
-  // import useStorage from '../composition/local'
+  import { reactive, toRefs, computed } from 'vue'
+  import useScroll from '../composition/scroll'
   export default {
     name: 'TodoMvcDemo',
     setup () {
@@ -46,8 +46,7 @@
         todos: [
           {id: 1, title: '吃饭', completed: false},
           {id: 2, title: '睡觉', completed: false}
-        ],
-        top: 0
+        ]
       })
       const addTodo = ()  => {
         const value = state.newTodo && state.newTodo.trim()
@@ -74,19 +73,9 @@
       const removeCompleted = () => {
         state.todos = state.todos.filter(it => !it.completed)
       }
+      const { top } = useScroll()
 
-      const update = () => {
-        state.top = window.scrollY
-      }
-      onMounted(() => {
-        window.addEventListener('scroll', update)
-      })
-
-      onUnmounted(() => {
-        window.removeEventListener('scroll', update)
-      })
-
-      return { ...toRefs(state), allDone, remaining,
+      return { ...toRefs(state), top, allDone, remaining,
               addTodo, removeTodo, removeCompleted}
     }
   }
