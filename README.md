@@ -1,4 +1,4 @@
-# vue-next-test
+# Vue3-demo
 
 ## Project setup
 ```
